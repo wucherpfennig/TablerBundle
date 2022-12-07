@@ -2,9 +2,7 @@
 <html lang="{{ app.request.locale }}"{% if tabler_bundle.isRightToLeft() %} dir="rtl"{% endif %}>
 <head>
     {% block head %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        {% include '@Tabler/includes/html_head.html.twig' %}
     {% endblock %}
     <title>{% block title %}Log in{% endblock %}</title>
     {% block stylesheets %}
@@ -24,6 +22,7 @@
         </div>
 
         <div class="card card-md">
+            {% block login_box %}
             <div class="card-body">
                 <h2 class="card-title text-center mb-4">{% block login_box_msg %}{% endblock %}</h2>
                 {% block login_box_error %}
@@ -71,7 +70,8 @@
                     </form>
                 {% endblock %}
             </div>
-        {% block login_social_auth %}
+            {% endblock %}
+            {% block login_social_auth %}
             <div class="hr-text">{{ 'or'|trans({}, 'TablerBundle') }}</div>
             <div class="card-body">
                 <div class="row">
@@ -87,7 +87,7 @@
                     </div>
                 </div>
             </div>
-        {% endblock %}
+            {% endblock %}
         </div>
 
         {% block login_actions %}
